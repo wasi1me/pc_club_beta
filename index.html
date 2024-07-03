@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>出席システム</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css" media="all" /> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon-180x180.png">
+</head>
+
+<body>
+    <div id="app">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <!-- <div class="column is-4 is-offset-4"> -->
+                <div class="column">
+                    <h3 class="title has-text-black">パソコン部<br class="sp-br">出席登録!!</h3>
+                    <hr class="login-hr">
+                    <p class="subtitle has-text-black">下記を入力して出席登録を<br class="sp-br">実行してください。</p>
+                    <div class="box">
+                        <figure class="avatar">
+                            <!-- <img src="https://placehold.it/128x128"> -->
+                        </figure>
+						
+                        <form v-if="!isClicked" onsubmit="return false;">
+                            <div class="field">
+                                <div class="control id-group">
+                                    <label>ID<br></label>
+                                    <input v-model="id" class="input is-large" type="text" placeholder="IDを入力してください"
+                                        autofocus="">
+									
+                                    <label>パスワード<br></label>
+                                    <input v-model="password" class="input is-large" type="password"
+                                        placeholder="パスワードを入力してください" autofocus="">
+                                </div>
+                            </div>
+
+                            <button type="button" class="button is-block is-info is-large is-fullwidth"
+                                @click="attend()">出席登録する <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                        </form>
+                        <div v-if="isClicked" class="loader-wrapper">
+                            <div class="loader is-loading"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios-jsonp/dist/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            id: null,
+            password: null,
+            isClicked: false,
+        },
+        methods: {
+            attend() {
+                vueThis = this
+                this.isClicked = true
+
+                let apiUrl = 'https://script.google.com/macros/s/AKfycbzt_WkwPrXAOWvTuIcVexZe4D2CEvY9CeJ7D84gP73AL2s92b46Fpn38UoJkNQ9Stj_8g/exec'
+                axios.get(`${apiUrl}?id=${this.id}&password=${this.password}`).then(function (response) {
+                    console.log(response);
+                    alert(response.data.msg)
+                    vueThis.isClicked = false
+                })
+            },
+        },
+    })
+
+
+</script>
+
+</html>
