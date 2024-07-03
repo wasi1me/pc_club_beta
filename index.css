@@ -1,0 +1,91 @@
+/*styleSheet index.css*/
+
+body {
+    margin-top: 20px;
+}
+
+label {
+    font-size: 2vh;
+}
+
+.title {
+    font-size: 5vh;
+}
+
+.subtitle {
+    font-size: 2.25vh;
+}
+
+.button {
+    margin-top: 50px;
+}
+
+@media (min-width: 769px) {
+
+  .sp-br {
+    display: none;
+  }
+
+}
+
+
+@media screen and (max-width: 768px) {
+
+    html {
+        font-size: 10px;
+    }
+
+    body {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform:translateY(-80%) translateX(-50%);
+        -webkit- transform: translateY(-80%) translateX(-50%);
+
+        overflow: hidden;
+        margin-top: 0;
+    }
+
+    .title {
+        font-size: 4.5vh;
+    }
+
+    .subtitle {
+        font-size: 2.5vh;
+        margin: 20px 0;
+        margin-bottom: 15px;
+    }
+	
+	
+    .id-group,
+    .password-group {
+        margin: 20px;
+    }
+
+    input[type=text],
+    input[type=password] {
+        width: 80vw;
+        height: 40px;
+        font-size: 20px;
+    }
+
+
+    label {
+        font-size: 2.5vh;
+    }
+}
+
+@media screen and (max-width: 425px){
+	
+	.sp-br {
+    	display: block;
+  	}
+	
+	input[type=text],
+    input[type=password] {
+        width: 70vw;
+        height: 40px;
+        font-size: 20px;
+    }
+}
+
